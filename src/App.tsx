@@ -69,7 +69,7 @@ function App() {
           <div
             style={{
               position: "absolute",
-              bottom: "-2.5px",
+              bottom: "-3px",
               left: "-15px",
               backgroundColor: colors.lightBlue,
               width: "30px",
@@ -116,7 +116,7 @@ function App() {
             <div
               style={{
                 position: "absolute",
-                bottom: "-2.5px",
+                bottom: "-3px",
                 left: "-15px",
                 backgroundColor: colors.lightViolet,
                 width: "30px",
@@ -164,7 +164,7 @@ function App() {
             <div
               style={{
                 position: "absolute",
-                bottom: "-2.5px",
+                bottom: "-3px",
                 left: "-15px",
                 backgroundColor: colors.lightGrey,
                 width: "30px",
@@ -212,7 +212,7 @@ function App() {
             <div
               style={{
                 position: "absolute",
-                bottom: "-2.5px",
+                bottom: "-3px",
                 left: "-15px",
                 backgroundColor: colors.lightGreen,
                 width: "30px",
@@ -261,7 +261,7 @@ function App() {
             <div
               style={{
                 position: "absolute",
-                bottom: "-2.5px",
+                bottom: "-3px",
                 left: "-15px",
                 backgroundColor: colors.grey,
                 width: "30px",
