@@ -1,0 +1,15 @@
+.custom-tabs {
+  width: 100%;
+  padding: 10px;
+
+  .tabs {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .content {
+    width: 100%;
+    min-height: 300px;
+  }
+}
