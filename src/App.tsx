@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { map } from "lodash";
 import "./App.scss";
 
 function App() {
@@ -23,267 +24,106 @@ function App() {
     6: colors.grey,
   };
 
-  return (
-    <div
-      style={{
-        width: "100%",
-        // backgroundColor: "darkolivegreen",
-        padding: "10px",
-      }}
-    >
-      <div style={{ display: "flex", width: "100%", alignItems: "center" }}>
-        <div
-          onClick={() => {}}
-          style={{
-            height: "65px",
-            backgroundColor: colors.orange,
-            width: "100%",
-            borderRadius: "0 0 15px 0",
-            position: "relative",
-            zIndex: 6,
-            cursor: "pointer",
-            border: `3px solid ${colors.brown}`,
-          }}
-        >
-          Первый квадатик (глаз)
-        </div>
+  interface TabProp {
+    key: string;
+    title: JSX.Element | string;
+    content: JSX.Element | string;
+    onClick?: () => void;
+    disabled?: boolean;
+    style?: React.CSSProperties;
+  }
 
-        <div
-          onClick={() => setActiveKey("2")}
-          style={{
-            height: "65px",
-            backgroundColor: colors.lightBlue,
-            width: "100%",
-            borderRadius: activeKey === "2" ? "0px" : "0 0 15px 0",
-            position: "relative",
-            zIndex: activeKey !== "2" ? 5 : 4,
-            cursor: "pointer",
-            borderTop: `3px solid ${colors.brown}`,
-            borderRight:
-              activeKey !== "2" ? `3px solid ${colors.brown}` : "none",
-            borderBottom:
-              activeKey !== "2" ? `3px solid ${colors.brown}` : "none",
-          }}
-        >
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
-            }}
-          >
-            Второй квадратик
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              bottom: "-2.6px",
-              left: "-15px",
-              backgroundColor: colors.lightBlue,
-              width: "30px",
-              height: "30px",
-              borderBottom:
-                activeKey !== "2" ? `3px solid ${colors.brown}` : "none",
-            }}
-          ></div>
-          {activeKey === "2" && (
-            <div
-              style={{
-                position: "absolute",
-                bottom: "0",
-                right: "-15px",
-                backgroundColor: colors.lightBlue,
-                width: "30px",
-                height: "30px",
-              }}
-            ></div>
-          )}
-        </div>
+  const tabProps: TabProp[] = [
+    {
+      key: "1",
+      title: "Глаз",
+      content: "Первый квадратик",
+      disabled: true,
+    },
+    {
+      key: "2",
+      title: "Акт выпол. работ",
+      content: "Второй квадратик",
+    },
+    {
+      key: "3",
+      title: "Счёт",
+      content: "Третий квадратик",
+    },
+    {
+      key: "4",
+      title: "Наряд - заказ",
+      content: "Четвертый квадратик",
+    },
+    {
+      key: "5",
+      title: "Лист осмотр",
+      content: "Пятый квадратик",
+    },
+    {
+      key: "6",
+      title: "Админ. панель",
+      content: "Шестый квадратик",
+    },
+  ];
 
-        <div
-          onClick={() => setActiveKey("3")}
-          style={{
-            height: "65px",
-            backgroundColor: colors.lightViolet,
-            width: "100%",
-            borderRadius: activeKey !== "2" ? "0 0 15px 0" : "0 0 15px 15px",
-            position: "relative",
-            zIndex: activeKey !== "3" ? 4 : 3,
-            cursor: "pointer",
-            borderTop: `3px solid ${colors.brown}`,
-            borderRight:
-              activeKey !== "3" ? `3px solid ${colors.brown}` : "none",
-            borderBottom:
-              activeKey !== "3" ? `3px solid ${colors.brown}` : "none",
-            borderLeft:
-              activeKey === "2" ? `3px solid ${colors.brown}` : "none",
-          }}
-        >
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
-            }}
-          >
-            Третий квадратик
-          </div>
-          {activeKey !== "2" && (
-            <div
-              style={{
-                position: "absolute",
-                bottom: "-2.6px",
-                left: "-15px",
-                backgroundColor: colors.lightViolet,
-                width: "30px",
-                height: "30px",
-                borderBottom:
-                  activeKey !== "3" ? `3px solid ${colors.brown}` : "none",
-              }}
-            ></div>
-          )}
-          {activeKey === "3" && (
-            <div
-              style={{
-                position: "absolute",
-                bottom: "0",
-                right: "-15px",
-                backgroundColor: colors.lightViolet,
-                width: "30px",
-                height: "30px",
-              }}
-            ></div>
-          )}
-        </div>
+  const DEFAULT_TAB_HEIGHT = "65px";
 
-        <div
-          onClick={() => setActiveKey("4")}
-          style={{
-            height: "65px",
-            backgroundColor: colors.lightGrey,
-            width: "100%",
-            borderRadius: activeKey !== "3" ? "0 0 15px 0" : "0 0 15px 15px",
-            position: "relative",
-            zIndex: activeKey !== "4" ? 3 : 2,
-            cursor: "pointer",
-            borderTop: `3px solid ${colors.brown}`,
-            borderRight:
-              activeKey !== "4" ? `3px solid ${colors.brown}` : "none",
-            borderBottom:
-              activeKey !== "4" ? `3px solid ${colors.brown}` : "none",
-            borderLeft:
-              activeKey === "3" ? `3px solid ${colors.brown}` : "none",
-          }}
-        >
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
-            }}
-          >
-            Четвертый квадратик
-          </div>
-          {activeKey !== "3" && (
-            <div
-              style={{
-                position: "absolute",
-                bottom: "-2.6px",
-                left: "-15px",
-                backgroundColor: colors.lightGrey,
-                width: "30px",
-                height: "30px",
-                borderBottom:
-                  activeKey !== "4" ? `3px solid ${colors.brown}` : "none",
-              }}
-            ></div>
-          )}
-          {activeKey === "4" && (
-            <div
-              style={{
-                position: "absolute",
-                bottom: "0",
-                right: "-15px",
-                backgroundColor: colors.lightGrey,
-                width: "30px",
-                height: "30px",
-              }}
-            ></div>
-          )}
-        </div>
+  const getTabs = (tabProps: TabProp[], activeKey: string) => {
+    const tabsLength = tabProps.length;
 
+    return map(tabProps, (tab: TabProp, index: number) => {
+      return (
         <div
-          onClick={() => setActiveKey("5")}
-          style={{
-            height: "65px",
-            backgroundColor: colors.lightGreen,
-            width: "100%",
-            borderRadius: activeKey !== "4" ? "0 0 15px 0" : "0 0 15px 15px",
-            position: "relative",
-            zIndex: activeKey !== "5" ? 2 : 1,
-            cursor: "pointer",
-            borderTop: `3px solid ${colors.brown}`,
-            borderRight:
-              activeKey !== "5" ? `3px solid ${colors.brown}` : "none",
-            borderBottom:
-              activeKey !== "5" ? `3px solid ${colors.brown}` : "none",
-            borderLeft:
-              activeKey === "4" ? `3px solid ${colors.brown}` : "none",
-          }}
-        >
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
-            }}
-          >
-            Пятый квадратик
-          </div>
-          {activeKey !== "4" && (
-            <div
-              style={{
-                position: "absolute",
-                bottom: "-2.6px",
-                left: "-15px",
-                backgroundColor: colors.lightGreen,
-                width: "30px",
-                height: "30px",
-                borderBottom:
-                  activeKey !== "5" ? `3px solid ${colors.brown}` : "none",
-              }}
-            ></div>
-          )}
-          {activeKey === "5" && (
-            <div
-              style={{
-                position: "absolute",
-                bottom: "0",
-                right: "-15px",
-                backgroundColor: colors.lightGreen,
-                width: "30px",
-                height: "30px",
-              }}
-            ></div>
-          )}
-        </div>
+          key={tab.key}
+          onClick={() => {
+            tab.onClick && tab.onClick();
 
-        <div
-          onClick={() => setActiveKey("6")}
+            !tab.disabled && setActiveKey(tab.key);
+          }}
           style={{
-            height: "65px",
-            backgroundColor: colors.grey,
             width: "100%",
-            borderRadius: activeKey === "5" ? "0 0 0 15px" : "0",
             position: "relative",
-            zIndex: 1,
             cursor: "pointer",
-            border: `3px solid ${colors.brown}`,
+
+            height: DEFAULT_TAB_HEIGHT,
+            backgroundColor: background[tab.key],
             borderTop: `3px solid ${colors.brown}`,
+
+            zIndex:
+              activeKey !== tab.key
+                ? tabsLength - index
+                : tabsLength - (index + 1),
+
+            borderRadius:
+              activeKey === tab.key
+                ? "0px"
+                : activeKey !== tabProps[tabsLength - 1].key &&
+                  index === tabsLength - 1
+                ? "0 0 0 15px"
+                : activeKey === (index && tabProps[index - 1].key)
+                ? "0 0 15px 15px"
+                : "0 0 15px 0",
+
             borderRight:
-              activeKey !== "6"
+              activeKey !== tab.key
                 ? `3px solid ${colors.brown}`
-                : `3px solid ${colors.grey}`,
-            borderBottom:
-              activeKey !== "6" ? `3px solid ${colors.brown}` : "none",
+                : activeKey === tabProps[tabsLength - 1].key
+                ? `3px solid ${background[tabProps[tabsLength - 1].key]}`
+                : "none",
+
             borderLeft:
-              activeKey === "5" ? `3px solid ${colors.brown}` : "none",
+              activeKey === (index && tabProps[index - 1].key) ||
+              (index === 0 && activeKey !== tab.key)
+                ? `3px solid ${colors.brown}`
+                : activeKey === tabProps[0].key && index === 0
+                ? `3px solid ${background[tabProps[0].key]}`
+                : "none",
+
+            borderBottom:
+              activeKey !== tab.key ? `3px solid ${colors.brown}` : "none",
+
+            ...tab.style,
           }}
         >
           <div
@@ -292,48 +132,66 @@ function App() {
               zIndex: 1,
             }}
           >
-            Шестой квадратик
+            {tab.title}
           </div>
-          {activeKey !== "5" && (
+
+          {activeKey !== (index && tabProps[index - 1].key) && index !== 0 && (
             <div
               style={{
                 position: "absolute",
                 bottom: "-2.6px",
                 left: "-15px",
-                backgroundColor: colors.grey,
                 width: "30px",
                 height: "30px",
+
+                backgroundColor: background[tab.key],
                 borderBottom:
-                  activeKey !== "6" ? `3px solid ${colors.brown}` : "none",
+                  activeKey !== tab.key ? `3px solid ${colors.brown}` : "none",
               }}
             ></div>
           )}
-          {activeKey === "6" && (
+          {activeKey === tab.key && index !== tabsLength - 1 && (
             <div
               style={{
                 position: "absolute",
                 bottom: "0",
-                left: "-15px",
-                backgroundColor: colors.grey,
+                right: "-15px",
                 width: "30px",
                 height: "30px",
+
+                backgroundColor: background[tab.key],
               }}
             ></div>
           )}
         </div>
-      </div>
+      );
+    });
+  };
+
+  return (
+    <>
       <div
         style={{
           width: "100%",
-          height: "300px",
-          backgroundColor: background[activeKey],
+          padding: "10px",
         }}
       >
-        <h3 style={{ margin: 0, textAlign: "center", paddingTop: "25px" }}>
-          Содержимое {activeKey} квадратика
-        </h3>
+        <div style={{ display: "flex", width: "100%", alignItems: "center" }}>
+          {getTabs(tabProps, activeKey)}
+        </div>
+        <div
+          style={{
+            width: "100%",
+            height: "300px",
+            backgroundColor: background[activeKey],
+          }}
+        >
+          <h3 style={{ margin: 0, textAlign: "center", paddingTop: "25px" }}>
+            Содержимое {activeKey} квадратика
+          </h3>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
