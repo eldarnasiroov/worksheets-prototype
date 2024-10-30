@@ -27,7 +27,7 @@ function App() {
     <div
       style={{
         width: "100%",
-        backgroundColor: "darkolivegreen",
+        // backgroundColor: "darkolivegreen",
         padding: "10px",
       }}
     >
@@ -65,7 +65,14 @@ function App() {
               activeKey !== "2" ? `3px solid ${colors.brown}` : "none",
           }}
         >
-          Второй квадратик
+          <div
+            style={{
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
+            Второй квадратик
+          </div>
           <div
             style={{
               position: "absolute",
@@ -111,7 +118,14 @@ function App() {
               activeKey === "2" ? `3px solid ${colors.brown}` : "none",
           }}
         >
-          Третий квадратик
+          <div
+            style={{
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
+            Третий квадратик
+          </div>
           {activeKey !== "2" && (
             <div
               style={{
@@ -159,7 +173,14 @@ function App() {
               activeKey === "3" ? `3px solid ${colors.brown}` : "none",
           }}
         >
-          Четвертый квадратик
+          <div
+            style={{
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
+            Четвертый квадратик
+          </div>
           {activeKey !== "3" && (
             <div
               style={{
@@ -207,7 +228,14 @@ function App() {
               activeKey === "4" ? `3px solid ${colors.brown}` : "none",
           }}
         >
-          Пятый квадратик
+          <div
+            style={{
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
+            Пятый квадратик
+          </div>
           {activeKey !== "4" && (
             <div
               style={{
@@ -249,14 +277,23 @@ function App() {
             border: `3px solid ${colors.brown}`,
             borderTop: `3px solid ${colors.brown}`,
             borderRight:
-              activeKey !== "6" ? `3px solid ${colors.brown}` : `3px solid ${colors.grey}`,
+              activeKey !== "6"
+                ? `3px solid ${colors.brown}`
+                : `3px solid ${colors.grey}`,
             borderBottom:
               activeKey !== "6" ? `3px solid ${colors.brown}` : "none",
             borderLeft:
               activeKey === "5" ? `3px solid ${colors.brown}` : "none",
           }}
         >
-          Шестой квадратик
+          <div
+            style={{
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
+            Шестой квадратик
+          </div>
           {activeKey !== "5" && (
             <div
               style={{
@@ -292,7 +329,7 @@ function App() {
           backgroundColor: background[activeKey],
         }}
       >
-        <h3 style={{margin: 0, textAlign: "center", paddingTop: "25px"}}>
+        <h3 style={{ margin: 0, textAlign: "center", paddingTop: "25px" }}>
           Содержимое {activeKey} квадратика
         </h3>
       </div>
